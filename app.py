@@ -25,10 +25,11 @@ conn.commit()
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model = CargoPredictor()
 try:
-    model.load_state_dict(torch.load("best_model.pth", map_location=device))
-    print("Модель best_model.pth успешно загружена!")
-except Exception:
-    print("Внимание: best_model.pth не найден, используются базовые веса")
+    model.load_state_dict(torch.load("best_model_fold2.pth", map_location=device))
+    print("Модель best_model_fold2.pth успешно загружена!")
+except Exception as e:
+    print(f"Ошибка загрузки: {e}")
+
 model.to(device)
 model.eval()
 
